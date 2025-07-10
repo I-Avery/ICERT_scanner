@@ -40,6 +40,6 @@ def read_can():
 	gui.after(10, read_can)
 
 
-read_can()
-gui.mainloop()
+read_can() # spin up the CAN logger
+gui.mainloop() # start the tkinter gui
 
