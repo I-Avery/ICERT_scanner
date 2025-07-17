@@ -6,12 +6,12 @@ import tkinter as tk
 # >>>>>>>>>>>>>>>>>>>>>>>>
 # load tkinter
 gui = tk.Tk()
-gui.title("Decoded CAN Signals")
+gui.title("CAN Signal Monitor")
 
-# storing the names of the signals
+# CANbus signals and values to be displayed
 labels = {}
 
-# method that updates live CAN signal values
+# method that passes live CAN signal values to the gui
 def update_signals(CAN_messages):
 	for name, value in CAN_messages.items():
 		if name not in labels:
@@ -22,7 +22,7 @@ def update_signals(CAN_messages):
 
 
 # load dbc
-dbc = cantools.database.load_file("filename.dbc")
+dbc = cantools.database.load_file("j1939.dbc")
 
 # prep cantools 
 bus = can.interface.Bus(bustype = 'socketcan', channel = 'can0', bitrate = 250000)
@@ -33,13 +33,14 @@ def read_can():
 	frame = bus.recv(0.1) # check for new CAN frames every 0.1 secs
 	if frame:
 		try:
-			dmsg = dbc.decode_message(frame.arbitration_id, frame_data) # this is a dict -> {"BMS SOC": 62}
-			update_signals(dmsg)
+			dmsg = dbc.decode_message(frame.arbitration_id, frame_data) # dmsg is a dict -> {"BMS SOC": 62}
+			update_signals(dmsg) # pass it to the gui
 		except:
 			pass 
-	gui.after(10, read_can)
+	gui.after(10, read_can) # update gui every 10 seconds
 
 
-read_can() # spin up the CAN logger
-gui.mainloop() # start the tkinter gui
+read_can()
+gui.mainloop()
+
 
