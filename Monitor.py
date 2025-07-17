@@ -6,7 +6,7 @@ import tkinter as tk
 # >>>>>>>>>>>>>>>>>>>>>>>>
 # load tkinter
 gui = tk.Tk()
-gui.title("CAN Signal Monitor")
+gui.title("CANbus Signal Monitor")
 
 # CANbus signals and values to be displayed
 labels = {}
