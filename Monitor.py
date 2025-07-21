@@ -2,7 +2,6 @@ import cantools
 import can
 import tkinter as tk 
 
-
 # >>>>>>>>>>>>>>>>>>>>>>>>
 # load tkinter
 gui = tk.Tk()
@@ -12,7 +11,6 @@ gui.title("CANbus Signal Monitor")
 labels = {}
 row_map = {}  # keeps track of row index for each signal
 next_row = 0  # global counter for grid rows
-
 
 
 def update_signals(CAN_messages):
@@ -33,8 +31,6 @@ def update_signals(CAN_messages):
 
         # Update value in existing label
         labels[name].config(text=f"{value}")
-
-
 
 
 # load dbc
@@ -58,5 +54,4 @@ def read_can():
 
 read_can()
 gui.mainloop()
-
 
