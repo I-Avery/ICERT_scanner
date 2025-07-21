@@ -10,14 +10,30 @@ gui.title("CANbus Signal Monitor")
 
 # CANbus signals and values to be displayed
 labels = {}
+row_map = {}  # keeps track of row index for each signal
+next_row = 0  # global counter for grid rows
 
-# method that passes live CAN signal values to the gui
+
+
 def update_signals(CAN_messages):
-	for name, value in CAN_messages.items():
-		if name not in labels:
-			labels[name] = tk.Label(gui, text="", font=("Courier", 14))
-			labels[name].pack(pady=5)
-		labels[name].config(text=f"{name}: {value}")
+    global next_row
+    for name, value in CAN_messages.items():
+        if name not in labels:
+            # Create static label for the name
+            tk.Label(gui, text=f"{name}:", font=("Courier", 14)).grid(row=next_row, column=0, sticky="e", padx=10, pady=2)
+
+            # Create dynamic label for the value and store it
+            value_label = tk.Label(gui, text="", font=("Courier", 14), anchor="w")
+            value_label.grid(row=next_row, column=1, sticky="w", padx=10, pady=2)
+            labels[name] = value_label
+
+            # Track which row this signal uses
+            row_map[name] = next_row
+            next_row += 1
+
+        # Update value in existing label
+        labels[name].config(text=f"{value}")
+
 
 
 
@@ -33,7 +49,7 @@ def read_can():
 	frame = bus.recv(0.1) # check for new CAN frames every 0.1 secs
 	if frame:
 		try:
-			dmsg = dbc.decode_message(frame.arbitration_id, frame_data) # dmsg is a dict -> {"BMS SOC": 62}
+			dmsg = dbc.decode_message(frame.arbitration_id, frame.data) # dmsg is a dict -> {"BMS SOC": 62}
 			update_signals(dmsg) # pass it to the gui
 		except:
 			pass 
