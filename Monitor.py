@@ -23,7 +23,7 @@ def update_signals(CAN_messages):
             tk.Label(gui, text=f"{name}:", font=("Droid Sans Fallback", 12)).grid(row=next_row, column=0, sticky="e", padx=10, pady=2)
 
             # Create dynamic label for the value and store it
-            value_label = tk.Label(gui, text="", font=("Courier", 14), anchor="w")
+            value_label = tk.Label(gui, text="", font=("Droid Sans Fallback", 12), anchor="w")
             value_label.grid(row=next_row, column=1, sticky="w", padx=10, pady=2)
             labels[name] = value_label
 
@@ -39,7 +39,8 @@ def update_signals(CAN_messages):
 dbc = cantools.database.load_file("j1939.dbc")
 
 # prep cantools 
-bus = can.interface.Bus(bustype = 'socketcan', channel = 'can0', bitrate = 250000)
+bus = can.interface.Bus(bustype = 'socketcan', channel = 'vcan0', bitrate = 250000)
+
 
 
 # read CAN traffic and decode
