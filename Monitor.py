@@ -10,7 +10,9 @@ gui.title("CANbus Signal Monitor")
 # CANbus signals and values to be displayed
 labels = {}
 row_map = {}  # keeps track of row index for each signal
-next_row = 0  # global counter for grid rows
+next_row = 0  # global counter for grid rows 
+
+
 
 
 def update_signals(CAN_messages):
