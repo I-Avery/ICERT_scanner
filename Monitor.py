@@ -18,7 +18,7 @@ def update_signals(CAN_messages):
     for name, value in CAN_messages.items():
         if name not in labels:
             # Create static label for the name
-            tk.Label(gui, text=f"{name}:", font=("Courier", 14)).grid(row=next_row, column=0, sticky="e", padx=10, pady=2)
+            tk.Label(gui, text=f"{name}:", font=("Droid Sans Fallback", 12)).grid(row=next_row, column=0, sticky="e", padx=10, pady=2)
 
             # Create dynamic label for the value and store it
             value_label = tk.Label(gui, text="", font=("Courier", 14), anchor="w")
