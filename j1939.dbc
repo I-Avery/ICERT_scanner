@@ -1,0 +1,421 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: inductEV_System Vehicle inductEV_Fod4 inductEV_Fod2 inductEV_Fod3 inductEV_Fod1 inductEV_B2 inductEV_A2 inductEV_B1 inductEV_A1
+VAL_TABLE_ WCS_Derate_Reasons 255 "Description for the value '0x9'" 254 "Description for the value '0x8'" 253 "Description for the value '0x7'" 6 "Smart Charging" 5 "GA Internal" 4 "GA Temperature" 3 "Vehicle Internal" 2 "VA Temperature" 1 "VA Temperature" 0 "Not derating" ;
+VAL_TABLE_ WCS_States 255 "Not Available" 254 "General Error" 10 "NA" 9 "GA Error" 8 "FOD Error" 7 "VA Error" 6 "Shutdown" 5 "Power Transfer" 4 "Idle" 3 "Awaiting Alignment" 2 "Session Initiated" 1 "Standby" 0 "Off" ;
+VAL_TABLE_ EV_Full_Charging_Complete 3 "Not Available" 2 "Error" 1 "Full Charging Complete" 0 "Full Charging Not Complete" ;
+VAL_TABLE_ EV_Bulk_Charging_Complete_Table 3 "Not Available" 2 "Error" 1 "Bulk Charging Complete" 0 "Bulk Charging Not Complete" ;
+VAL_TABLE_ EVSE1_Status_Value_Table 6 "6 = Malfunction" 1 "1 = EVSE Ready" 0 "0 = EVSE Not Ready" ;
+VAL_TABLE_ Charger_Ready_Value_Table 1 "Charger_Ready" 0 "Charger_Not_Ready" ;
+VAL_TABLE_ Charger_Alignment_Value_Table 3 "Fully_Aligned" 2 "Partially_Aligned" 1 "Charger_Nearby" 0 "Not_Aligned" ;
+VAL_TABLE_ HVBI_Value_Table 5 "Disconnection_Warning" 3 "Disconection_In_Process" 2 "Connection_In_Process" 1 "Connected" 0 "Not_Connected" ;
+VAL_TABLE_ EESCS_Value_Table 12 "Charger_Charging" 9 "Pantograph_Charging" 7 "Pantograph_Connected" 2 "Charger_Connected" 0 "No_Connection" ;
+VAL_TABLE_ EESCD_Values_Table 11 "inductive_charger_detected" 9 "Activate" 0 "No_Connection" ;
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ Display_Alignment : 0|8@1+ (0.4,0) [0|102] "%" Vector__XXX
+ SG_ Display_FOD_Detected : 0|1@1+ (1,0) [0|0] "bool" Vector__XXX
+ SG_ Display_Power : 0|16@1+ (0.015,0) [0|983.025] "kW" Vector__XXX
+ SG_ Display_Error_Flag : 0|1@1+ (1,0) [0|0] "bool" Vector__XXX
+ SG_ high_voltage_dc_availability : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ hves_charging_consent : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EESCD : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ UNUSED_32 : 0|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ EVSE_DC_Charging_Min : 0|16@1+ (0.0625,0) [0|4015.9375] "A" Vector__XXX
+ SG_ EVSE_DC_Voltage_Min : 0|16@1- (0.05,0) [0|3212.75] "V" Vector__XXX
+ SG_ dc_max_charging_current : 0|16@1+ (0.0625,0) [0|4015.9375] "A" Vector__XXX
+ SG_ dc_target_charging_voltage : 0|16@1+ (0.05,0) [0|3212.75] "V" Vector__XXX
+
+BO_ 2565937665 DCDC2VC: 8 Vehicle
+ SG_ DCDC2_High_Side_Voltage : 32|16@1+ (0.05,0) [0|3212.75] "V" Vector__XXX
+
+BO_ 2364575745 HVESSD1: 8 Vehicle
+ SG_ HVESS_Voltage_Level : 32|16@1+ (0.05,0) [0|3276.75] "V" Vector__XXX
+
+BO_ 2365529472 Proprietary_Display: 8 inductEV_System
+ SG_ Display_Radio_Comms : 2|1@1+ (1,0) [0|0] "bool" Vector__XXX
+ SG_ Display_BMS_CAN_Comms : 1|1@1+ (1,0) [0|0] "bool" Vector__XXX
+ SG_ Display_Auth_Flag : 0|1@1+ (1,0) [0|0] "bool" Vector__XXX
+
+BO_ 2365479425 ASC1: 8 Vehicle
+ SG_ level_control_mode : 28|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ kneeling_information : 24|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 2566852740 Proprietary_Status_B2: 8 inductEV_B2
+ SG_ Charger_Output_Current : 16|16@1+ (0.1,0) [0|1000] "A" Vector__XXX
+ SG_ Charger_Ambient_Temp : 56|8@1+ (1,-64) [-64|191] "C" Vector__XXX
+ SG_ Charger_Cold_Plate_Temp : 48|8@1+ (1,-64) [-64|191] "C" Vector__XXX
+ SG_ Charger_FOD_Detected_Flag : 47|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_CAN_Comms_Flag : 46|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_RF_Comms_Flag : 45|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Ready_Flag : 44|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Error_Flag : 43|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Alignment_State : 41|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Charger_Authorized_Flag : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Error_Code : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Charger_Output_Voltage : 0|16@1+ (0.1,0) [0|1000] "V" Vector__XXX
+
+BO_ 2566852738 Proprietary_Status_B1: 8 inductEV_B1
+ SG_ Charger_Output_Current : 16|16@1+ (0.1,0) [0|1000] "A" Vector__XXX
+ SG_ Charger_Ambient_Temp : 56|8@1+ (1,-64) [-64|191] "C" Vector__XXX
+ SG_ Charger_Cold_Plate_Temp : 48|8@1+ (1,-64) [-64|191] "C" Vector__XXX
+ SG_ Charger_FOD_Detected_Flag : 47|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_CAN_Comms_Flag : 46|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_RF_Comms_Flag : 45|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Ready_Flag : 44|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Error_Flag : 43|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Alignment_State : 41|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Charger_Authorized_Flag : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Error_Code : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Charger_Output_Voltage : 0|16@1+ (0.1,0) [0|1000] "V" Vector__XXX
+
+BO_ 2566852739 Proprietary_Status_A2: 8 inductEV_A2
+ SG_ Charger_Output_Current : 16|16@1+ (0.1,0) [0|1000] "A" Vector__XXX
+ SG_ Charger_Ambient_Temp : 56|8@1+ (1,-64) [-64|191] "C" Vector__XXX
+ SG_ Charger_Cold_Plate_Temp : 48|8@1+ (1,-64) [-64|191] "C" Vector__XXX
+ SG_ Charger_FOD_Detected_Flag : 47|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_CAN_Comms_Flag : 46|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_RF_Comms_Flag : 45|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Ready_Flag : 44|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Error_Flag : 43|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Alignment_State : 41|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Charger_Authorized_Flag : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Error_Code : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Charger_Output_Voltage : 0|16@1+ (0.1,0) [0|1000] "V" Vector__XXX
+
+BO_ 2565900416 WCAQS: 8 inductEV_System
+ SG_ WCS_Align_Z_Quality : 16|8@1+ (0.8,-100) [-100|100] "%" Vector__XXX
+ SG_ WCS_Align_Y_Quality : 8|8@1+ (0.8,-100) [-100|104] "%" Vector__XXX
+ SG_ WCS_Align_X_Quality : 0|8@1+ (0.8,-100) [-100|104] "%" Vector__XXX
+ SG_ WCS_Align_Overall_Quality : 24|8@1+ (0.4,0) [0|100] "%" Vector__XXX
+
+BO_ 2365529225 Proprietary_Fod3: 8 inductEV_Fod3
+ SG_ FOD_Temperature : 16|8@1+ (1,-40) [-40|215] "deg C" Vector__XXX
+ SG_ FOD_Status : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2365529226 Proprietary_Fod4: 8 inductEV_Fod4
+ SG_ FOD_Temperature : 16|8@1+ (1,-40) [-40|215] "deg C" Vector__XXX
+ SG_ FOD_Status : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2365529224 Proprietary_Fod2: 8 inductEV_Fod2
+ SG_ FOD_Temperature : 16|8@1+ (1,-40) [-40|215] "deg C" Vector__XXX
+ SG_ FOD_Status : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2365529223 Proprietary_Fod1: 8 inductEV_Fod1
+ SG_ FOD_Temperature : 16|8@1+ (1,-40) [-40|215] "deg C" Vector__XXX
+ SG_ FOD_Status : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2566853248 Proprietary_Sync_Msg: 8 inductEV_System
+ SG_ Charger_Power_Token : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2566844673 CCVS1: 8 Vehicle
+ SG_ Park_Brake : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2565936129 DCDC1VC: 8 Vehicle
+ SG_ DCDC1_High_Side_Voltage : 32|16@1+ (0.05,0) [0|3212.75] "V" Vector__XXX
+
+BO_ 2566567296 EVSE1DCLIM1: 8 inductEV_System
+ SG_ UNUSED_32 : 32|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ EVSE_DC_Charging_Max : 16|16@1+ (0.0625,0) [0|4015.9375] "A" Vector__XXX
+ SG_ EVSE_DC_Voltage_Max : 0|16@1+ (0.05,0) [0|3212.75] "V" Vector__XXX
+
+BO_ 2566566913 EVDCLIM1: 8 Vehicle
+ SG_ dc_charging_max_voltage : 0|16@1+ (0.05,0) [0|3212.75] "" Vector__XXX
+
+BO_ 2566567681 EVDCTGT: 8 Vehicle
+ SG_ dc_target_charging_current : 32|16@1+ (0.0625,0) [0|4015.9375] "A" Vector__XXX
+
+BO_ 2555609089 EVSE1C1: 8 Vehicle
+ SG_ ev_ready : 8|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566701569 HSS1: 8 Vehicle
+ SG_ SOC_Stored_Energy_Lvl : 32|8@1+ (0.4,0) [0|100] "%" Vector__XXX
+ SG_ EESCS : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 2566852996 Proprietary_Alignment_B2: 8 inductEV_B2
+ SG_ Charger_Capable_Output_Current : 32|16@1+ (0.1,0) [0|1000] "" Vector__XXX
+ SG_ Charger_Derating_Reason : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Charger_Charging_State : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Pad_Alignment_Z : 16|8@1+ (1,-100) [-100|100] "" Vector__XXX
+ SG_ Pad_Alignment_X : 0|8@1+ (1,-100) [-100|100] "" Vector__XXX
+ SG_ Pad_Alignment_Y : 8|8@1+ (1,-100) [-100|100] "" Vector__XXX
+
+BO_ 2566852994 Proprietary_Alignment_B1: 8 inductEV_B1
+ SG_ Charger_Capable_Output_Current : 32|16@1+ (0.1,0) [0|1000] "" Vector__XXX
+ SG_ Charger_Derating_Reason : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Charger_Charging_State : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Pad_Alignment_Z : 16|8@1+ (1,-100) [-100|100] "" Vector__XXX
+ SG_ Pad_Alignment_Y : 8|8@1+ (1,-100) [-100|100] "" Vector__XXX
+ SG_ Pad_Alignment_X : 0|8@1+ (1,-100) [-100|155] "" Vector__XXX
+
+BO_ 2566852995 Proprietary_Alignment_A2: 8 inductEV_A2
+ SG_ Charger_Capable_Output_Current : 32|16@1+ (0.1,0) [0|1000] "" Vector__XXX
+ SG_ Charger_Derating_Reason : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Charger_Charging_State : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Pad_Alignment_Z : 16|8@1+ (1,-100) [-100|100] "" Vector__XXX
+ SG_ Pad_Alignment_Y : 8|8@1+ (1,-100) [-100|100] "" Vector__XXX
+ SG_ Pad_Alignment_X : 0|8@1+ (1,-100) [-100|100] "" Vector__XXX
+
+BO_ 2566855422 Proprietary_Fwu_Resp: 8 Vector__XXX
+
+BO_ 2566855166 Proprietary_Fwu_Cmd: 8 Vector__XXX
+
+BO_ 2566855678 Proprietary_Fwu_Data: 8 Vector__XXX
+
+BO_ 2633963518 Charger_Events: 8 Charger_Debug
+ SG_ System_DEVICE_TYPE : 7|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ System_DEVICE_ID : 3|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ System_Event_Time : 15|24@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ System_Event_Event : 39|16@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ System_Event_Value : 55|16@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2633963774 Charger_Debug: 8 Charger_Debug
+ SG_ DEVICE_TYPE : 7|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ DEVICE_ID : 3|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ TYPE : 11|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ COMMAND : 15|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ KEY : 23|16@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ VALUE : 39|32@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2566852993 Proprietary_Alignment_A1: 8 inductEV_A1
+ SG_ Pad_Alignment_Z : 16|8@1+ (1,-100) [-100|100] "" Vector__XXX
+ SG_ Pad_Alignment_Y : 8|8@1+ (1,-100) [-100|100] "" Vector__XXX
+ SG_ Charger_Derating_Reason : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Charger_Capable_Output_Current : 32|16@1+ (0.1,0) [0|1000] "" Vector__XXX
+ SG_ Charger_Charging_State : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Pad_Alignment_X : 0|8@1+ (1,-100) [-100|100] "%" Vector__XXX
+
+BO_ 2566852737 Proprietary_Status_A1: 8 inductEV_A1
+ SG_ Charger_Output_Current : 16|16@1+ (0.1,0) [0|1000] "A" Vector__XXX
+ SG_ Charger_Ambient_Temp : 56|8@1+ (1,-64) [-64|191] "C" Vector__XXX
+ SG_ Charger_Cold_Plate_Temp : 48|8@1+ (1,-64) [-64|191] "C" Vector__XXX
+ SG_ Charger_FOD_Detected_Flag : 47|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_CAN_Comms_Flag : 46|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_RF_Comms_Flag : 45|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Ready_Flag : 44|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Error_Flag : 43|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Alignment_State : 41|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Charger_Authorized_Flag : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Charger_Error_Code : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Charger_Output_Voltage : 0|16@1+ (0.1,0) [0|1000] "V" Vector__XXX
+
+BO_ 2565900160 WCSS1: 8 inductEV_System
+ SG_ WCS_State : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ WCS_Derating_Reason : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ WCS_Charging_Voltage : 8|16@1+ (0.03125,0) [0|2047.96875] "V" Vector__XXX
+ SG_ WCS_Charging_Current : 24|16@1+ (0.1,-3212.7) [-3212.7|3340.8] "A" Vector__XXX
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+BA_DEF_ BO_  "TpJ1939VarDlc" ENUM  "No","Yes";
+BA_DEF_ SG_  "SigType" ENUM  "Default","Range","RangeSigned","ASCII","Discrete","Control","ReferencePGN","DTC","StringDelimiter","StringLength","StringLengthControl","MessageCounter","MessageChecksum";
+BA_DEF_ SG_  "GenSigEVName" STRING ;
+BA_DEF_ SG_  "GenSigILSupport" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ BO_  "GenMsgFastOnStart" INT 0 100000;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 3600000;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 1000000;
+BA_DEF_ SG_  "GenSigStartValue" INT 0 2147483647;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "NmJ1939SystemInstance" INT 0 15;
+BA_DEF_ BU_  "NmJ1939System" INT 0 127;
+BA_DEF_ BU_  "NmJ1939ManufacturerCode" INT 0 2047;
+BA_DEF_ BU_  "NmJ1939IndustryGroup" INT 0 7;
+BA_DEF_ BU_  "NmJ1939IdentityNumber" INT 0 2097151;
+BA_DEF_ BU_  "NmJ1939FunctionInstance" INT 0 7;
+BA_DEF_ BU_  "NmJ1939Function" INT 0 255;
+BA_DEF_ BU_  "NmJ1939ECUInstance" INT 0 3;
+BA_DEF_ BU_  "NmJ1939AAC" INT 0 1;
+BA_DEF_ BU_  "NmStationAddress" INT 0 255;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "cyclic","NotUsed","IfActive","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","noMsgSendType";
+BA_DEF_ BO_  "GenMsgRequestable" INT 0 1;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 3600000;
+BA_DEF_ SG_  "SPN" INT 0 524287;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "ProtocolType" STRING ;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG";
+BA_DEF_DEF_  "TpJ1939VarDlc" "No";
+BA_DEF_DEF_  "SigType" "Default";
+BA_DEF_DEF_  "GenSigEVName" "Env@Nodename_@Signame";
+BA_DEF_DEF_  "GenSigILSupport" "Yes";
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "GenMsgFastOnStart" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "NmJ1939SystemInstance" 0;
+BA_DEF_DEF_  "NmJ1939System" 0;
+BA_DEF_DEF_  "NmJ1939ManufacturerCode" 0;
+BA_DEF_DEF_  "NmJ1939IndustryGroup" 0;
+BA_DEF_DEF_  "NmJ1939IdentityNumber" 0;
+BA_DEF_DEF_  "NmJ1939FunctionInstance" 0;
+BA_DEF_DEF_  "NmJ1939Function" 0;
+BA_DEF_DEF_  "NmJ1939ECUInstance" 0;
+BA_DEF_DEF_  "NmJ1939AAC" 0;
+BA_DEF_DEF_  "NmStationAddress" 254;
+BA_DEF_DEF_  "GenMsgSendType" "noMsgSendType";
+BA_DEF_DEF_  "GenMsgRequestable" 1;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "SPN" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "ProtocolType" "J1939";
+BA_DEF_DEF_  "VFrameFormat" "J1939PG";
+BA_ "BusType" "CAN";
+BA_ "DBName" "inductEVj1939protocol";
+BA_ "NmStationAddress" BU_ inductEV_System 128;
+BA_ "NmStationAddress" BU_ Vehicle 1;
+BA_ "NmStationAddress" BU_ inductEV_Fod4 138;
+BA_ "NmStationAddress" BU_ inductEV_Fod2 136;
+BA_ "NmStationAddress" BU_ inductEV_Fod3 137;
+BA_ "NmStationAddress" BU_ inductEV_Fod1 135;
+BA_ "NmStationAddress" BU_ inductEV_B2 132;
+BA_ "NmStationAddress" BU_ inductEV_A2 131;
+BA_ "NmStationAddress" BU_ inductEV_B1 130;
+BA_ "NodeLayerModules" BU_ inductEV_A1 "*";
+BA_ "NmStationAddress" BU_ inductEV_A1 129;
+BA_ "GenMsgCycleTime" BO_ 2565937665 100;
+BA_ "VFrameFormat" BO_ 2565937665 3;
+BA_ "GenMsgCycleTime" BO_ 2364575745 20;
+BA_ "VFrameFormat" BO_ 2364575745 3;
+BA_ "VFrameFormat" BO_ 2365529472 3;
+BA_ "GenMsgCycleTime" BO_ 2365479425 100;
+BA_ "VFrameFormat" BO_ 2365479425 3;
+BA_ "GenMsgCycleTime" BO_ 2566852740 100;
+BA_ "VFrameFormat" BO_ 2566852740 3;
+BA_ "GenMsgCycleTime" BO_ 2566852738 100;
+BA_ "VFrameFormat" BO_ 2566852738 3;
+BA_ "GenMsgCycleTime" BO_ 2566852739 100;
+BA_ "VFrameFormat" BO_ 2566852739 3;
+BA_ "GenMsgCycleTime" BO_ 2565900416 50;
+BA_ "VFrameFormat" BO_ 2565900416 3;
+BA_ "VFrameFormat" BO_ 2365529225 3;
+BA_ "VFrameFormat" BO_ 2365529226 3;
+BA_ "VFrameFormat" BO_ 2365529224 3;
+BA_ "VFrameFormat" BO_ 2365529223 3;
+BA_ "GenMsgCycleTime" BO_ 2566853248 500;
+BA_ "VFrameFormat" BO_ 2566853248 3;
+BA_ "GenMsgCycleTime" BO_ 2566844673 100;
+BA_ "VFrameFormat" BO_ 2566844673 3;
+BA_ "GenMsgCycleTime" BO_ 2565936129 100;
+BA_ "VFrameFormat" BO_ 2565936129 3;
+BA_ "GenMsgCycleTime" BO_ 2566567296 100;
+BA_ "VFrameFormat" BO_ 2566567296 3;
+BA_ "GenMsgCycleTime" BO_ 2566566913 1000;
+BA_ "VFrameFormat" BO_ 2566566913 3;
+BA_ "GenMsgCycleTime" BO_ 2566567681 20;
+BA_ "VFrameFormat" BO_ 2566567681 3;
+BA_ "GenMsgCycleTime" BO_ 2555609089 100;
+BA_ "VFrameFormat" BO_ 2555609089 3;
+BA_ "GenMsgCycleTime" BO_ 2566701569 1000;
+BA_ "VFrameFormat" BO_ 2566701569 3;
+BA_ "GenMsgCycleTime" BO_ 2566852996 100;
+BA_ "VFrameFormat" BO_ 2566852996 3;
+BA_ "GenMsgCycleTime" BO_ 2566852994 100;
+BA_ "VFrameFormat" BO_ 2566852994 3;
+BA_ "GenMsgCycleTime" BO_ 2566852995 100;
+BA_ "VFrameFormat" BO_ 2566852995 3;
+BA_ "VFrameFormat" BO_ 2566855422 3;
+BA_ "VFrameFormat" BO_ 2566855166 3;
+BA_ "VFrameFormat" BO_ 2566855678 3;
+BA_ "GenMsgCycleTime" BO_ 2633963518 50;
+BA_ "VFrameFormat" BO_ 2633963518 3;
+BA_ "GenMsgCycleTime" BO_ 2633963774 50;
+BA_ "VFrameFormat" BO_ 2633963774 3;
+BA_ "GenMsgCycleTime" BO_ 2566852993 100;
+BA_ "VFrameFormat" BO_ 2566852993 3;
+BA_ "GenMsgCycleTime" BO_ 2566852737 100;
+BA_ "VFrameFormat" BO_ 2566852737 3;
+BA_ "GenMsgCycleTime" BO_ 2565900160 100;
+BA_ "VFrameFormat" BO_ 2565900160 3;
+BA_ "GenSigStartValue" SG_ 2566852740 Charger_Ambient_Temp 64;
+BA_ "GenSigStartValue" SG_ 2566852740 Charger_Cold_Plate_Temp 64;
+BA_ "GenSigStartValue" SG_ 2566852738 Charger_Ambient_Temp 64;
+BA_ "GenSigStartValue" SG_ 2566852738 Charger_Cold_Plate_Temp 64;
+BA_ "GenSigStartValue" SG_ 2566852739 Charger_Ambient_Temp 64;
+BA_ "GenSigStartValue" SG_ 2566852739 Charger_Cold_Plate_Temp 64;
+BA_ "GenSigStartValue" SG_ 2565900416 WCS_Align_Z_Quality 125;
+BA_ "GenSigStartValue" SG_ 2565900416 WCS_Align_Y_Quality 125;
+BA_ "GenSigStartValue" SG_ 2565900416 WCS_Align_X_Quality 125;
+BA_ "GenSigStartValue" SG_ 2365529225 FOD_Temperature 40;
+BA_ "GenSigStartValue" SG_ 2365529226 FOD_Temperature 40;
+BA_ "GenSigStartValue" SG_ 2365529224 FOD_Temperature 40;
+BA_ "GenSigStartValue" SG_ 2365529223 FOD_Temperature 40;
+BA_ "GenSigStartValue" SG_ 2566852996 Pad_Alignment_Z 100;
+BA_ "GenSigStartValue" SG_ 2566852996 Pad_Alignment_X 100;
+BA_ "GenSigStartValue" SG_ 2566852996 Pad_Alignment_Y 100;
+BA_ "GenSigStartValue" SG_ 2566852994 Pad_Alignment_Z 100;
+BA_ "GenSigStartValue" SG_ 2566852994 Pad_Alignment_Y 100;
+BA_ "GenSigStartValue" SG_ 2566852994 Pad_Alignment_X 100;
+BA_ "GenSigStartValue" SG_ 2566852995 Pad_Alignment_Z 100;
+BA_ "GenSigStartValue" SG_ 2566852995 Pad_Alignment_Y 100;
+BA_ "GenSigStartValue" SG_ 2566852995 Pad_Alignment_X 100;
+BA_ "GenSigStartValue" SG_ 2566852993 Pad_Alignment_Z 100;
+BA_ "GenSigStartValue" SG_ 2566852993 Pad_Alignment_Y 100;
+BA_ "GenSigStartValue" SG_ 2566852993 Pad_Alignment_X 100;
+BA_ "GenSigStartValue" SG_ 2566852737 Charger_Ambient_Temp 64;
+BA_ "GenSigStartValue" SG_ 2566852737 Charger_Cold_Plate_Temp 64;
+BA_ "GenSigStartValue" SG_ 2565900160 WCS_Charging_Current 32127;
+VAL_ 3221225472 high_voltage_dc_availability 5 "Disconnection_Warning" 3 "Disconection_In_Process" 2 "Connection_In_Process" 1 "Connected" 0 "Not_Connected" ;
+VAL_ 3221225472 EESCD 11 "inductive_charger_detected" 9 "Activate" 0 "No_Connection" ;
+VAL_ 2566852740 Charger_Ready_Flag 1 "Charger_Ready" 0 "Charger_Not_Ready" ;
+VAL_ 2566852740 Charger_Alignment_State 3 "Fully_Aligned" 2 "Partially_Aligned" 1 "Charger_Nearby" 0 "Not_Aligned" ;
+VAL_ 2566852738 Charger_Ready_Flag 1 "Charger_Ready" 0 "Charger_Not_Ready" ;
+VAL_ 2566852738 Charger_Alignment_State 3 "Fully_Aligned" 2 "Partially_Aligned" 1 "Charger_Nearby" 0 "Not_Aligned" ;
+VAL_ 2566852739 Charger_Ready_Flag 1 "Charger_Ready" 0 "Charger_Not_Ready" ;
+VAL_ 2566852739 Charger_Alignment_State 3 "Fully_Aligned" 2 "Partially_Aligned" 1 "Charger_Nearby" 0 "Not_Aligned" ;
+VAL_ 2566701569 EESCS 12 "Charger_Charging" 9 "Pantograph_Charging" 7 "Pantograph_Connected" 2 "Charger_Connected" 0 "No_Connection" ;
+VAL_ 2633963518 System_DEVICE_TYPE 0 "Unknown" 1 "PEM" 2 "SEM" 3 "SMM" 4 "PMM" 5 "DEBUG" 6 "FOD" ;
+VAL_ 2633963774 DEVICE_TYPE 0 "Unknown" 1 "PEM" 2 "SEM" 3 "SMM" 4 "PMM" 5 "DEBUG" 6 "FOD" ;
+VAL_ 2566852737 Charger_Ready_Flag 1 "Charger_Ready" 0 "Charger_Not_Ready" ;
+VAL_ 2566852737 Charger_Alignment_State 3 "Fully_Aligned" 2 "Partially_Aligned" 1 "Charger_Nearby" 0 "Not_Aligned" ;
+VAL_ 2565900160 WCS_State 255 "Not Available" 254 "General Error" 10 "NA" 9 "GA Error" 8 "FOD Error" 7 "VA Error" 6 "Shutdown" 5 "Power Transfer" 4 "Idle" 3 "Awaiting Alignment" 2 "Session Initiated" 1 "Standby" 0 "Off" ;
+VAL_ 2565900160 WCS_Derating_Reason 255 "Description for the value '0x9'" 254 "Description for the value '0x8'" 253 "Description for the value '0x7'" 6 "Smart Charging" 5 "GA Internal" 4 "GA Temperature" 3 "Vehicle Internal" 2 "VA Temperature" 1 "VA Temperature" 0 "Not derating" ;
+
