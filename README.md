@@ -1,2 +1,2 @@
 # ICERT_scanner
-A tool for monitoring messages and signals on a CANbus network
+A tool for displaying messages and signals on a CANbus network
