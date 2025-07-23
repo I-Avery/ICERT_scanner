@@ -2,6 +2,12 @@ import cantools
 import can
 import tkinter as tk
 import subprocess
+import os
+
+dbc_dir = os.path.dirname(os.path.abspath(__file__))
+dbc_filepath = os.path.join(dbc_dir, "j1939.dbc")
+parser_filepath = os.path.join(dbc_dir, "candump_parser.py")
+
 
 # load tkinter
 gui = tk.Tk()
@@ -33,7 +39,7 @@ def update_signals(CAN_messages):
 
 
 # load dbc
-dbc = cantools.database.load_file("j1939.dbc")
+dbc = cantools.database.load_file(dbc_filepath)
 
 # prep cantools 
 bus = can.interface.Bus(bustype = 'socketcan', channel = 'vcan0', bitrate = 250000)
@@ -53,5 +59,5 @@ def read_can():
 
 read_can()
 gui.mainloop()
-subprocess.Popen(['python', 'candump_parser.py'])
+subprocess.Popen(['python', parser_filepath])
 
