@@ -42,7 +42,6 @@ dbc = cantools.database.load_file("j1939.dbc")
 bus = can.interface.Bus(bustype = 'socketcan', channel = 'vcan0', bitrate = 250000)
 
 
-
 # read CAN traffic and decode
 def read_can():
 	frame = bus.recv(0.1) # check for new CAN frames every 0.1 secs
