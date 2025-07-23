@@ -1,8 +1,8 @@
 import cantools
 import can
-import tkinter as tk 
+import tkinter as tk
+import subprocess
 
-# >>>>>>>>>>>>>>>>>>>>>>>>
 # load tkinter
 gui = tk.Tk()
 gui.title("CANbus Signal Monitor")
@@ -11,9 +11,6 @@ gui.title("CANbus Signal Monitor")
 labels = {}
 row_map = {}  # keeps track of row index for each signal
 next_row = 0  # global counter for grid rows 
-
-
-
 
 def update_signals(CAN_messages):
     global next_row
@@ -56,4 +53,5 @@ def read_can():
 
 read_can()
 gui.mainloop()
+subprocess.Popen(['python', 'candump_parser.py'])
 
