@@ -38,8 +38,10 @@ with open(filepath) as file:
             data=payload_byte,
             is_extended_id=True #true for 29 bit IDs
         )
+        print(f"sending: {msg}")
         bus.send(msg)
-        time.sleep(delay)
+        print(f"sent: {msg}")
+        time.sleep(delay) # mimic the timing of the messages from the log
         # if x > 2: # stop doing lines here
             # break
 

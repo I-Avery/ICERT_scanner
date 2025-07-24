@@ -44,20 +44,29 @@ dbc = cantools.database.load_file(dbc_filepath)
 # prep cantools 
 bus = can.interface.Bus(interface = 'virtual', channel = 'vcan0', bitrate = 250000)
 
+# >>>>>>>>>>>>>>
+# Starting the parser
+# >>>>>>>>>>>>>>
 
 # read CAN traffic and decode
 def read_can():
-	frame = bus.recv(0.001) # check for new CAN frames every 0.001 secs
+	frame = bus.recv(0.1) # check for new CAN frames every 0.001 secs
 	if frame:
+		print("received:", frame) # debug check
 		try:
 			dmsg = dbc.decode_message(frame.arbitration_id, frame.data) # dmsg is a dict -> {"BMS SOC": 62}
 			update_signals(dmsg) # pass it to the gui
 		except:
 			pass 
-	gui.after(1, read_can) # update gui every 10 seconds
+	gui.after(100, read_can) # update gui every 10 seconds
+
+
+# subprocess.Popen(['python', parser_filepath])
+
+subprocess.Popen(['python', parser_filepath], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 read_can()
 gui.mainloop()
-subprocess.Popen(['python', parser_filepath])
+
 
