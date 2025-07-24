@@ -42,12 +42,12 @@ def update_signals(CAN_messages):
 dbc = cantools.database.load_file(dbc_filepath)
 
 # prep cantools 
-bus = can.interface.Bus(bustype = 'socketcan', channel = 'vcan0', bitrate = 250000)
+bus = can.interface.Bus(interface = 'virtual', channel = 'vcan0', bitrate = 250000)
 
 
 # read CAN traffic and decode
 def read_can():
-	frame = bus.recv(0.1) # check for new CAN frames every 0.1 secs
+	frame = bus.recv(0.001) # check for new CAN frames every 0.001 secs
 	if frame:
 		try:
 			dmsg = dbc.decode_message(frame.arbitration_id, frame.data) # dmsg is a dict -> {"BMS SOC": 62}
