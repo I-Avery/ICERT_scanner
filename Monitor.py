@@ -54,7 +54,7 @@ def read_can():
 			update_signals(dmsg) # pass it to the gui
 		except:
 			pass 
-	gui.after(10, read_can) # update gui every 10 seconds
+	gui.after(1, read_can) # update gui every 10 seconds
 
 
 read_can()
