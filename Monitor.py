@@ -4,7 +4,7 @@ import tkinter as tk
 import subprocess
 import time
 import os
-from candump_parser import parser_function
+
 
 # dbc_dir = os.path.dirname(os.path.abspath(__file__))
 # dbc_filepath = os.path.join(dbc_dir, "j1939.dbc")
@@ -202,15 +202,16 @@ def parser_loop():
 # read CAN traffic and decode
 def read_can():
     print("read can called")
-    frame = bus.recv(0.1) # check for new CAN frames every 0.001 secs
+    frame = bus.recv(0.001) # check for new CAN frames every 0.001 secs
     if frame:
-        print("received:", frame)
         try:
-            dmsg = dbc.decode_message(frame.arbitration_id, frame.data) # dmsg is a dict -> {"BMS SOC": 62}
-            update_signals(dmsg) # pass it to the gui
-		except:
-            pass 
-	# gui.after(100, read_can) # update gui every 100 miliseconds
+            print("trying attempted")
+            dmsg = dbc.decode_message(frame.arbitration_id, frame.data) # this is a dict -> {BMS SOC: 62}
+            update_signals(dmsg)
+            print(f"dmsg attempted to send: {dmsg}")
+        except:
+            pass
+        
 
 
 # subprocess.Popen(['python', parser_filepath])
@@ -219,7 +220,8 @@ def read_can():
 
 
 # read_can()
-parser_loop()
+# parser_loop()
+gui.after(0, parser_loop)
 gui.mainloop()
 
 
