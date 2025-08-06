@@ -121,29 +121,25 @@ import os
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # TESTING
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-
+# explicit PATH declarations
 dbc_dir = os.path.dirname(os.path.abspath(__file__))
 dbc_filepath = os.path.join(dbc_dir, "j1939.dbc")
-# parser_filepath = os.path.join(dbc_dir, "candump_parser.py") # removing to test joining the logic
-
-# # >>>>>>>>>>>
-# # Test that combines the parser logic into this file
 script_dir = os.path.dirname(os.path.abspath(__file__))
 filepath = os.path.join(script_dir, "inductEV_J1939_2pad.dump")
-# # >>>>>>>>>>>
+
 
 
 # load tkinter
 gui = tk.Tk()
 gui.title("CANbus Signal Monitor")
 
-# CANbus signals and values to be displayed
-labels = {}
-# row_map = {}  # keeps track of row index for each signal
-
+# CAN bus signals and values to be displayed
 labels = {}
 
+
+# tkinter 
 def update_signals(signal_dict):
     print(f"Received at gui: {signal_dict}")
     for name, value in signal_dict.items():
@@ -165,11 +161,10 @@ def update_signals(signal_dict):
 
 # load dbc
 dbc = cantools.database.load_file(dbc_filepath)
-
-# prep cantools 
+# cantools 
 bus = can.interface.Bus(interface = 'virtual', channel = 'vcan0', bitrate = 250000)
 
-# >>>>>>>>>>>>>>
+
 # Parser loop
 def parser_loop():
     print("parser called")
@@ -191,19 +186,16 @@ def parser_loop():
                 data=payload_byte,
                 is_extended_id=True #true for 29 bit IDs
             )
-            # print(f"sending: {msg}")
             bus.send(msg)
             print(f"message sent: {msg}")
             read_can()
             time.sleep(delay) # mimic the timing of the messages from the log
 
-# >>>>>>>>>>>>>>>>>>
-
 # read CAN traffic and decode
 def read_can():
     print("read can called")
     frame = bus.recv(0.001) # check for new CAN frames every 0.001 secs
-    if frame:
+    if frame: #Frame always = None
         try:
             print("trying attempted")
             dmsg = dbc.decode_message(frame.arbitration_id, frame.data) # this is a dict -> {BMS SOC: 62}
@@ -213,14 +205,6 @@ def read_can():
             pass
         
 
-
-# subprocess.Popen(['python', parser_filepath])
-
-# subprocess.Popen(['python', parser_filepath], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
-
-# read_can()
-# parser_loop()
 gui.after(0, parser_loop)
 gui.mainloop()
 
